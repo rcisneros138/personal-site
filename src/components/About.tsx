@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ProfileIllustration } from "./ProfileIllustration";
+import { EditorialDivider } from "./IllustrationFrame";
 
 const highlights = [
   {
@@ -37,14 +39,26 @@ export function About() {
       style={{ background: "var(--background-secondary)" }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
-          {/* Left column - Intro text */}
+        {/* Top: Illustration + Intro */}
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 mb-24">
+          {/* Profile Illustration */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-5 flex justify-center lg:justify-start"
+          >
+            <ProfileIllustration size="xl" variant="default" />
+          </motion.div>
+
+          {/* Intro text */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-5"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-7"
           >
             {/* Section label */}
             <div className="flex items-center gap-4 mb-8">
@@ -74,10 +88,10 @@ export function About() {
             </h2>
 
             <div
-              className="space-y-6 text-base leading-relaxed"
+              className="space-y-6 text-base leading-relaxed max-w-xl"
               style={{ color: "var(--foreground-muted)" }}
             >
-              <p>
+              <p className="drop-cap">
                 I&apos;m a senior software engineer with a passion for building
                 intelligent systems that make a real impact. My journey spans from
                 crafting elegant frontend experiences to architecting scalable ML
@@ -94,21 +108,47 @@ export function About() {
                 the latest advancements in LLMs and generative AI.
               </p>
             </div>
+          </motion.div>
+        </div>
 
-            {/* Visual accent */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-12 h-px origin-left"
-              style={{ background: "var(--border)" }}
-            />
+        {/* Divider */}
+        <EditorialDivider className="mb-20" />
+
+        {/* Bottom: Highlights grid */}
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Section intro */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-4"
+          >
+            <h3
+              className="text-2xl mb-4"
+              style={{
+                fontFamily: "var(--font-display), Georgia, serif",
+                fontWeight: 400,
+                color: "var(--foreground)",
+              }}
+            >
+              What I bring to the table
+            </h3>
+            <p
+              className="text-sm leading-relaxed"
+              style={{ color: "var(--foreground-muted)" }}
+            >
+              A unique blend of deep technical expertise and creative
+              problem-solving, refined through years of shipping production
+              software.
+            </p>
           </motion.div>
 
-          {/* Right column - Highlights grid */}
-          <div className="lg:col-span-7 lg:col-start-6">
-            <div className="grid sm:grid-cols-2 gap-px" style={{ background: "var(--border)" }}>
+          {/* Highlights */}
+          <div className="lg:col-span-8">
+            <div
+              className="grid sm:grid-cols-2 gap-px"
+              style={{ background: "var(--border)" }}
+            >
               {highlights.map((item, index) => (
                 <motion.div
                   key={item.number}
@@ -116,7 +156,7 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
-                  className="p-8 lg:p-10"
+                  className="p-8 lg:p-10 halftone"
                   style={{ background: "var(--background)" }}
                 >
                   <span
@@ -125,7 +165,7 @@ export function About() {
                   >
                     {item.number}
                   </span>
-                  <h3
+                  <h4
                     className="text-xl mb-3"
                     style={{
                       fontFamily: "var(--font-display), Georgia, serif",
@@ -134,7 +174,7 @@ export function About() {
                     }}
                   >
                     {item.title}
-                  </h3>
+                  </h4>
                   <p
                     className="text-sm leading-relaxed"
                     style={{ color: "var(--foreground-muted)" }}
@@ -144,28 +184,28 @@ export function About() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Large decorative initial */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="hidden lg:flex mt-12 justify-end"
-            >
-              <span
-                className="text-[10rem] leading-none select-none"
-                style={{
-                  fontFamily: "var(--font-display), Georgia, serif",
-                  fontWeight: 300,
-                  color: "var(--border)",
-                }}
-              >
-                A
-              </span>
-            </motion.div>
           </div>
         </div>
+
+        {/* Large decorative initial */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="hidden lg:flex mt-16 justify-end"
+        >
+          <span
+            className="text-[10rem] leading-none select-none"
+            style={{
+              fontFamily: "var(--font-display), Georgia, serif",
+              fontWeight: 300,
+              color: "var(--border)",
+            }}
+          >
+            A
+          </span>
+        </motion.div>
       </div>
     </section>
   );
