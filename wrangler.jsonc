@@ -2,9 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "personal-site",
   "compatibility_date": "2025-01-08",
-  "main": "worker/index.ts",
   "assets": {
-    "directory": "./out",
-    "binding": "ASSETS"
+    "directory": "./out"
   }
 }
